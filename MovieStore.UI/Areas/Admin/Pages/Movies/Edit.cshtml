@@ -1,0 +1,45 @@
+@page "{id:int}"
+@model MovieStore.UI.Areas.Admin.Pages.Movies.EditModel
+@{
+    ViewData["Title"] = "Редактирование фильма";
+}
+
+<h1>Редактирование фильма</h1>
+@if (!string.IsNullOrWhiteSpace(Model.Movie.Image))
+{
+    <div class="mb-3">
+        <p class="mb-1">Текущий постер</p>
+        <img src="@Model.Movie.Image" alt="Постер @Model.Movie.Name" width="120" />
+    </div>
+}
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Movie.Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="Movie.Name" class="form-label">Название</label>
+        <input asp-for="Movie.Name" class="form-control" />
+        <span asp-validation-for="Movie.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Movie.Description" class="form-label">Описание</label>
+        <textarea asp-for="Movie.Description" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Movie.Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Movie.Price" class="form-label">Цена билета</label>
+        <input asp-for="Movie.Price" class="form-control" />
+        <span asp-validation-for="Movie.Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Movie.GenreId" class="form-label">Жанр</label>
+        <select asp-for="Movie.GenreId" asp-items="Model.Genres" class="form-select"></select>
+        <span asp-validation-for="Movie.GenreId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Image" class="form-label">Новый постер (оставьте пустым, чтобы сохранить текущий)</label>
+        <input asp-for="Image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a asp-page="./Index" class="btn btn-secondary">Назад</a>
+</form>
+<partial name="_ValidationScriptsPartial" />

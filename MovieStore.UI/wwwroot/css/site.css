@@ -1,0 +1,13 @@
+header, footer {
+  background-color: rgba(var(--bs-dark-rgb));
+}
+
+.nav-color {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.catalog-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}

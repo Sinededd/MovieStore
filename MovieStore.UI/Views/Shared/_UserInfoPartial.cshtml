@@ -1,0 +1,66 @@
+<div class="ms-auto d-flex align-items-center flex-shrink-0">
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        var name = User.Claims
+            .FirstOrDefault(c => c.Type == "preferred_username")?.Value;
+
+        var avatar = User.Claims
+            .FirstOrDefault(c => c.Type == "avatar")?.Value;
+
+        if (string.IsNullOrWhiteSpace(avatar))
+        {
+            avatar = "/images/default-profile-picture.png";
+        }
+
+        @await Component.InvokeAsync("Cart")
+
+        <div class="dropdown ms-3 nav-color">
+            <button class="btn btn-secondary dropdown-toggle d-flex align-items-center gap-2"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                <span>@name</span>
+                <img src="@avatar"
+                     width="30"
+                     height="30"
+                     alt="Аватар"
+                     class="rounded" />
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="dropdownMenuButton">
+                <li>
+                    <span class="dropdown-item-text">@name</span>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                    <form asp-area=""
+                          asp-controller="Account"
+                          asp-action="LogOut"
+                          method="post">
+                        <button type="submit" class="dropdown-item">
+                            Выход
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    }
+    else
+    {
+        <a asp-area=""
+           asp-controller="Account"
+           asp-action="Login"
+           class="btn btn-outline-light me-2">
+            Войти
+        </a>
+
+        <a asp-area=""
+           asp-controller="Account"
+           asp-action="Register"
+           class="btn btn-outline-light">
+            Зарегистрироваться
+        </a>
+    }
+</div>

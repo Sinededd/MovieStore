@@ -1,0 +1,20 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString()?.ToLowerInvariant() ?? string.Empty;
+    var area = ViewContext.RouteData.Values["area"]?.ToString()?.ToLowerInvariant() ?? string.Empty;
+}
+
+<a class="navbar-brand badge text-bg-primary fs-6" asp-area="" asp-controller="Home" asp-action="Index">Кинотеатр</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation"
+        aria-controls="mainNavigation" aria-expanded="false" aria-label="Открыть меню">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div id="mainNavigation" class="collapse navbar-collapse">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link @(controller == "home" && area.Length == 0 ? "active" : string.Empty)"
+           asp-area="" asp-controller="Home" asp-action="Index">Лб 1</a>
+        <a class="nav-item nav-link @(controller == "movie" ? "active" : string.Empty)"
+           asp-area="" asp-controller="Movie" asp-action="Index">Афиша</a>
+        <a class="nav-item nav-link @(area == "admin" ? "active" : string.Empty)"
+           asp-area="Admin" asp-page="/Movies/Index">Администрирование</a>
+    </div>
+</div>

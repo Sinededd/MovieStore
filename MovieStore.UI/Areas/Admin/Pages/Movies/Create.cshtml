@@ -1,0 +1,40 @@
+@page
+@model MovieStore.UI.Areas.Admin.Pages.Movies.CreateModel
+@{
+    ViewData["Title"] = "Новый фильм";
+}
+
+<h1>Новый фильм</h1>
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="Movie.Name" class="form-label">Название</label>
+        <input asp-for="Movie.Name" class="form-control" />
+        <span asp-validation-for="Movie.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Movie.Description" class="form-label">Описание</label>
+        <textarea asp-for="Movie.Description" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Movie.Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Movie.Price" class="form-label">Цена билета</label>
+        <input asp-for="Movie.Price" class="form-control" />
+        <span asp-validation-for="Movie.Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Movie.GenreId" class="form-label">Жанр</label>
+        <select asp-for="Movie.GenreId" asp-items="Model.Genres" class="form-select">
+            <option value="">Выберите жанр</option>
+        </select>
+        <span asp-validation-for="Movie.GenreId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Image" class="form-label">Постер (JPG, PNG, WebP, GIF, до 5 МБ)</label>
+        <input asp-for="Image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a asp-page="./Index" class="btn btn-secondary">Назад</a>
+</form>
+<partial name="_ValidationScriptsPartial" />

@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Кинотеатр: API",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/MovieStore.API/MovieStore.API.csproj"
+    },
+    {
+      "name": "Кинотеатр: UI",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/MovieStore.UI/MovieStore.UI.csproj"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Кинотеатр: API + UI",
+      "configurations": [
+        "Кинотеатр: API",
+        "Кинотеатр: UI"
+      ],
+      "stopAll": true
+    }
+  ]
+}

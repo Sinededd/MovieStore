@@ -1,0 +1,13 @@
+@page "{id:int}"
+@model MovieStore.UI.Areas.Admin.Pages.Movies.DeleteModel
+@{
+    ViewData["Title"] = "Удаление фильма";
+}
+
+<h1>Удалить фильм?</h1>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<p>Вы собираетесь удалить «@Model.Movie.Name».</p>
+<form method="post">
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a asp-page="./Index" class="btn btn-secondary">Отмена</a>
+</form>

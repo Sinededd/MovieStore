@@ -1,0 +1,5 @@
+@model CartSummary
+
+<a asp-area="" asp-controller="Cart" asp-action="Index" class="navbar-text text-decoration-none">
+    @Model.Total.ToString("0.00") руб <i class="bi bi-cart"></i> (@Model.Count)
+</a>
